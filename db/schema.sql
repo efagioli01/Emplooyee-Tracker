@@ -1,15 +1,15 @@
-DROP DATABASE IF EXISTS employeeMgrDb;
+-- DROP DATABASE IF EXISTS employeeMgrDb;
 
-CREATE DATABASE employeeMgrDb;
+CREATE DATABASE IF NOT EXISTS employeeMgrDb;
 
 USE employeeMgrDb;
 
-CREATE TABLE departments (
+CREATE TABLE IF NOT EXISTS departments (
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE roles (
+CREATE TABLE IF NOT EXISTS roles (
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(10, 2) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE roles (
 );
 
 
-CREATE TABLE employees (
+CREATE TABLE IF NOT EXISTS employees (
     id INTEGER NOT NUll AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
@@ -30,4 +30,5 @@ CREATE TABLE employees (
     INDEX manager_ind (manager_id),
     CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employees(id) ON DELETE SET NULL
 );
+SELECT * FROM departments
 

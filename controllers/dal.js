@@ -1,7 +1,5 @@
-const { rejects } = require('assert/strict');
 const consoleTable = require('console.table');
-const { resolve } = require('node:path');
-const connection = require('../config/db.js')
+const connection = require('../Assets/config/connection');
 
 const dal = {
     viewAll: function(query) {
@@ -15,36 +13,32 @@ const dal = {
             });
         });
     },
-
     viewAllBy: function(query, colToSearch, valueOfCol) {
         return new Promise((resolve, reject) => {
             connection.query(query, [colToSearch, valueOfCol, (err, result) => {
-                if (err) reject(err);
+                if (err)  reject(err);
                 console.log('\n');
                 console.table(result);
                 console.log('\n');
-                resolve(resolve);
+                resolve(result);
             }])
         })
     },
-
-    
-},
-
-deleteFrom: function(query, table, condition) {
-    return new Promise((resolve, reject) => {
-        connection.query(query, [table, condition], (err, result) => {
-            if (err) reject(err);
-            if (table === 'employees') {
-                console.log('The employee was deleted from the EMPLOYEES table \n')
-            } else if (table === 'roles') {
-                console.log('The role was deleted from the ROLES table \n')
-            } else {
-                console.log('The department has been deleted from the DEPARTMENTS table \n')
-            }
+    deleteFrom: function(query, table, condition) {
+        return new Promise((resolve, reject) => {
+            connection.query(query, [table, condition], (err, result) => {
+                if (err) throw err;
+                if(table === 'employees') {
+                    console.log('You just fired that employee. Tough break \n');
+                } else if (table === 'roles') {
+                console.log('The role was deleted from the ROLES table \n');
+                } else {
+                    console.log('The department has been deleted from the DEPARTMENTS table \n');
+            }   
             resolve(result);
+            })
         })
-    })
-}
+    }
+};
 
-module.exports = dal
+module.exports = dal;
