@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const connection = require('../Assets/config/connection');
+const askTask = require('../index');
 
 const { getAllEmp, getAllRoles, getAllManagers } = require('./getAll');
 

@@ -1,24 +1,20 @@
 const inquirer = require('inquirer');
-const askTask = require('../index.js');
+const askTask = require('../index');
 
 const connection = require('../Assets/config/connection');
-const { allDepts } = require('../db/queries');
+const { allDepts } = require('../db/db');
 const { getAllDepts } = require('./getAll');
 
-const addRole = () => {
-    Promise.all([ getAllDepts() ])
-    .then((values) => {
-        return values[0];
-    })
-    .then((allDepts) => 
-    inquirer.prompt([
+const addRole = async () => {
+    const allDepts = await getAllDepts()
+    const answers = await inquirer.prompt([
         {
             type: 'input',
             name: 'title',
             message: 'What is the title of the role?',
         },
         {
-            type: 'input',
+            type: 'number',
             name: 'salary',
             message: 'What is the salary for this role?',
         },
@@ -28,22 +24,16 @@ const addRole = () => {
             message: 'What is the department for this role?',
             choices: allDepts
         }
-    ]))
-    .then((answers) => {
-        connection.query(
-            "INSERT INTO roles SET ?",
-            {
-                title: answers.title,
-                salary: answers.salary,
-                department_id: Number(answers.deptId),
-            },
-            function(err) {
-                if (err) throw err;
-                console.log('The role was added successfullly!');
-                addTask();
-            }
-        );
-    }).catch((err) => console.log(err));
-}
+    ])
+    await connection.queryPromise(
+        "INSERT INTO roles SET ?",
+        {
+            title: answers.title,
+            salary: answers.salary,
+            department_id: Number(answers.deptId),
+        }
+    );
+    console.log('The role was added successfully!');
+};
 
 module.exports = addRole;

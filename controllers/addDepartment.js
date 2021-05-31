@@ -9,8 +9,8 @@ const addDept = (askTask) => {
             name: 'deptName',
         }
     ])
-    .then( (answers) => {
-        console.log(answers)
+    .then((answers) => {
+        console.log(answers);
         connection.query(
             'INSERT INTO departments SET ?',
             {
@@ -22,6 +22,7 @@ const addDept = (askTask) => {
                 console.log('Successfully added new department');
                 askTask();
             });
+            
     })
 }
 
