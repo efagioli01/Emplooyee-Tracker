@@ -1,38 +1,20 @@
 const inquirer = require('inquirer');
-const connection = require('../Assets/config/connection');
-const askTask = require('../index');
+const connection = require('../config/db');
 
 const { getAllEmp, getAllRoles, getAllManagers } = require('./getAll');
 
 
 const updateRole = (answers) => {
-    const askTask = require('../index');
-    connection.query('UPDATE employees SET ? WHERE ?', [{ role_id: answers.newRole}, {id: Number(answers.empl)}]),
-    function (err) {
-        if (err) throw err;
-        console.log('Role successfully update for employee');
-        askTask();
-    }
+    return connection.queryPromise('UPDATE employees SET ? WHERE ?', [{ role_id: answers.newRole}, {id: Number(answers.empl)}])
 }
 
 const updateManager = (answers) => {
     const askTask = require('../index');
-    connection.query('UPDATE employees SET ? WHERE ?', [{manager_id: Number(answers.newManager)}, {id: Number(answers.empl)}]),
-    function(err) {
-        if (err) throw err;
-        console.log("Manager successfully updated for employee");
-        askTask();
-    }
+    return connection.queryPromise('UPDATE employees SET ? WHERE ?', [{manager_id: Number(answers.newManager)}, {id: Number(answers.empl)}])
 }
 
 const updateEmployee = () => {
-    Promise.all([getAllEmp(), getAllRoles(), getAllManagers()])
-    .then((values) => {
-        const allEmployees = values[0];
-        const allRoles = values[1];
-        const allManagers = values[2];
-        return [allEmployees, allRoles, allManagers]
-    })
+    return Promise.all([getAllEmp(), getAllRoles(), getAllManagers()])
     .then(([ allEmployees, allRoles, allManagers ]) =>
         inquirer.prompt([
         {
@@ -70,9 +52,9 @@ const updateEmployee = () => {
         }
     ])).then((answers) => {
         if (answers.updateWhat === "role") {
-            updateRole(answers);
+            return updateRole(answers);
         } else {
-            updateManager(answers);
+            return updateManager(answers);
         }
 
     }).catch((err) => console.log(err));

@@ -5,7 +5,7 @@ const viewByMng = () => {
     return new Promise ((resolve, reject) => {
         getAllManagers()
         .then((allManagers) => {
-            inquirer.prompt([
+            return inquirer.prompt([
                 {
                     type: 'list',
                     name: 'managerId',

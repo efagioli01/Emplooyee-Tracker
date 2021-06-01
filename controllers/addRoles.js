@@ -1,8 +1,8 @@
 const inquirer = require('inquirer');
 const askTask = require('../index');
 
-const connection = require('../Assets/config/connection');
-const { allDepts } = require('../db/db');
+const connection = require('../config/db');
+const { allDepts } = require('../db/queries');
 const { getAllDepts } = require('./getAll');
 
 const addRole = async () => {

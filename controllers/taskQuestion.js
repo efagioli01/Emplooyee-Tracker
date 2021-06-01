@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 
 const questTask = [
     {
-        type: 'list',
+        type: 'rawlist',
         name: 'task',
         message: 'What would you like to do today?',
         choices: [

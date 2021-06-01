@@ -1,35 +1,30 @@
-DROP DATABASE IF EXISTS employeeMgrDb;
+DROP DATABASE IF EXISTS employeeMgrDB;
 
-CREATE DATABASE employeeMgrDb;
+CREATE DATABASE employeeMgrDB;
 
-USE employeeMgrDb;
+USE employeeMgrDB;
 
-CREATE TABLE departments (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL
+CREATE TABLE employees (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    role_id INTEGER(10),
+    manager_id INTEGER(10),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE roles (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(30) NOT NULL,
-    salary DECIMAL(10, 2) NOT NULL,
-    departments_id INTEGER NOT NULL,
-    INDEX dept_ind (departments_id),
-    CONSTRAINT fk_departments FOREIGN KEY (departments_id) REFERENCES departments(id) ON DELETE CASCADE 
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    title VARCHAR(30),
+    salary DECIMAL(7, 2),
+    department_id INTEGER NOT NULL,
+    PRIMARY KEY (id)
 );
 
-
-CREATE TABLE employees (
-    id INTEGER NOT NUll AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL,
-    roles_id INTEGER NOT NULL,
-    INDEX roles_ind (roles_id),
-    CONSTRAINT fk_roles FOREIGN KEY (roles_id) REFERENCES roles(id) ON DELETE CASCADE,
-    manager_id INTEGER, 
-    INDEX manager_ind (manager_id),
-    CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employees(id) ON DELETE SET NULL
+CREATE TABLE departments (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    dept_name VARCHAR(30),
+    PRIMARY KEY (id)
 );
-
 
 
