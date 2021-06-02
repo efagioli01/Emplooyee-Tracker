@@ -2,23 +2,28 @@
 
 ## Assignemnt
 
-For the twelfth homework assignment in week twelve of UNH Full-Stack Coding Bootcamp I was to 
+For the twelfth homework assignment in week twelve of UNH Full-Stack Coding Bootcamp I was to build a commmand line application to track employees in a company. 
 
-## User Story
-
-```
-
-```
 
 ## Description
 ```
+The Employee Tracker app allows for a company to manage its employees, roles, and departments.
+
+Features of the app
+
+* Create a department, role, and employee
+* View all departments, roles, and employees
+* Delete a departmet, role, and employee
+* Assign managers to employees
+* Switch employee roles and managers 
 
 ```
 
-## Acceptance Criteria
-
+## Built with
 ```
-
+* Javascript
+* Node.js
+* MySql
 ```
 
 
@@ -29,42 +34,52 @@ You will need to clone the respositry from Github to your local machine then ope
 
 You will need ro run in the terminal:
 
+npm install
+
 npm start
 
-npm install express
-
-
-
-to see the app working open server.js in your integrated terminal and run node server.js
-
+To execute the Sql files open MySql Workbech paste the schema.sql and seed.sql in there and execute
 
 ```
 
 
-## Built with
-
-* JavaScript
-* Node.js
-
 ## Dependancis
+```
+* Inquirer 
+* mysql
+* console.table
+```
 
-* 
-* 
+## Credits
+
+UNH Full Stack Coding Book Camp partnered with Trilogy Education Services
+
+Course Instructor - Benjamin Hutchins
+
+Course TA - Andrew Hatfield
+
+Tutor - Morgan Splawn
+
+Study Group - Patrick Sullivan [Github](https://github.com/shabobble) Alan Balcom [Github](https://github.com/abalcs) Swetha Reddivari [Github](https://github.com/swethareddyl)
+
 
 
 
 ## Deployment Links
 
-* [GitHub Repository]()
+[GitHub Repository](https://github.com/efagioli01/Emplooyee-Tracker)
 
 
 
-## Screenshot
-
-![screenshot]()
-![screenshot]()
 
 
+## VIDEO OF DEPLOYED APPLICATION
+
+<!-- Vide of working application [https://youtu.be/aGdqeQkf6lU]  -->
+
+[![VIDEO OF APPLICATION](./images/employee.PNG)](http://www.youtube.com/watch?v=aGdqeQkf6lU)
+
+--CLICK ON THE IMAGE TO VIEW THE VIDEO--
 
 
 
